@@ -21,5 +21,8 @@ void sort(int* data, int head, int tail, int level)
 {
     if (head >= tail)
         return;
-
+    if(level==3)
+    {
+        
+    }
 }
