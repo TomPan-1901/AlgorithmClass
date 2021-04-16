@@ -1,7 +1,7 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
-void sort(int *, int, int, int);
+void mysort(int*, int, int, int);
 int main()
 {
     int data[100][1000];
@@ -9,22 +9,52 @@ int main()
     cin >> m;
     for (int i = 0; i < m; i++)
     {
-        cin >> data[i][0];
-        for (int j = 1; j <= data[i][0]; j++)
+        int n;
+        cin >> n;
+        for (int j = 0; j < n; j++)
         {
             cin >> data[i][j];
         }
+        mysort(data[i], 0, n - 1, 1);
+        cout << endl;
     }
 }
-void sort(int *data, int head, int tail, int level)
+void mysort(int* data, int head, int tail, int level)
 {
     if (head >= tail)
         return;
-    if (level == 3)
+    int middle = (head + tail) / 2;
+    mysort(data, head, middle, level + 1);
+    mysort(data, middle + 1, tail, level + 1);
+    int leftptr = head;
+    int rightptr = middle + 1;
+    int tempptr = head;
+    int temp[1000] = {};
+    while (leftptr <= middle && rightptr <= tail)
     {
-        for (int i = 0; i < tail; i++)
+        if (data[leftptr] <= data[rightptr])
         {
-            cout << data[i] << endl;
+            temp[tempptr++] = data[leftptr++];
+        }
+        else
+        {
+            temp[tempptr++] = data[rightptr++];
+        }
+    }
+    while (leftptr <= middle)
+    {
+        temp[tempptr++] = data[leftptr++];
+    }
+    while (rightptr <= tail)
+    {
+        temp[tempptr++] = data[rightptr++];
+    }
+    for (int i = head;i <= tail;i++)
+    {
+        data[i] = temp[i];
+        if (level == 3)
+        {
+            cout << data[i] << " ";
         }
     }
 }
