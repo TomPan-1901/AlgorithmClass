@@ -1,11 +1,12 @@
 #include <iostream>
 #include <cstdio>
 using namespace std;
-void mysort(int*, int, int, int&);
+void mysort(int*, int*, int, int, int&);
 int main()
 {
     int m;
     scanf("%d", &m);
+    int buf[50000];
     for (int i = 0;i < m;i++)
     {
         int n;
@@ -16,21 +17,20 @@ int main()
             scanf("%d", &temp[j]);
         }
         int result = 0;
-        mysort(temp, 0, n - 1, result);
+        mysort(temp, buf, 0, n - 1, result);
         printf("%d", result);
     }
 }
-void mysort(int* data, int head, int tail, int& count)
+void mysort(int* data, int* temp, int head, int tail, int& count)
 {
     if (head >= tail)
         return;
     int middle = (head + tail) >> 1;
-    mysort(data, head, middle, count);
-    mysort(data, middle + 1, tail, count);
+    mysort(data, temp, head, middle, count);
+    mysort(data, temp, middle + 1, tail, count);
     int leftptr = head;
     int rightptr = middle + 1;
     int tempptr = head;
-    int temp[50000] = {};
     while (leftptr <= middle && rightptr <= tail)
     {
         if (data[leftptr] <= data[rightptr])
