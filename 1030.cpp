@@ -8,30 +8,33 @@ int main()
     {
         int n;
         cin >> n;
-        int data[20000] = {};
-        int tag[20000] = {};
-        for (int j = 0;j < 2 * n;j++)
-        {
-            cin >> data[j];
-        }
-        int k = 1;
+        int stack[10000];
+        int top = 0;
         int result = 0;
-        int total = 2 * n;
-        while (k < 2 * n)
+        int color_in_stack;
+        int temp;
+        cin >> temp;
+        color_in_stack = temp;
+        stack[top++] = 0;
+        for (int j = 1;j < 2 * n;j++)
         {
-            if (total == 0)
-                break;
-            for (int j = 0;j < 2 * n - k;j++)
+            cin >> temp;
+            if (temp == color_in_stack && top)
             {
-                if (!tag[j] && !tag[j + k] && (data[j] ^ data[j + k]))
+                stack[top++] = j;
+            }
+            else
+            {
+                if (top)
                 {
-                    tag[j] = 1;
-                    tag[j + k] = 1;
-                    result += k;
-                    total -= 2;
+                    result += j - stack[--top];
+                }
+                else
+                {
+                    color_in_stack = temp;
+                    stack[top++] = j;
                 }
             }
-            k++;
         }
         cout << result << endl;
     }
