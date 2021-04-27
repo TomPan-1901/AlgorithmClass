@@ -1,12 +1,19 @@
 #include <iostream>
-#include <algorithm>
 using namespace std;
 int main()
 {
     int m;
     cin >> m;
-    int dp[500][200] = {};
-    int data[500][2] = {};
+    int data[510][2] = {};
+    int dp[510][200] = {};
+    for (int i = 0;i < 510;i++)
+    {
+        for (int j = 0;j < 200;j++)
+        {
+            dp[i][j] = INT16_MIN;
+        }
+    }
+    dp[0][0] = 0;
     for (int i = 0;i < m;i++)
     {
         int n, c;
@@ -25,6 +32,11 @@ int main()
                     dp[k][l] = dp[k - 1][l];
             }
         }
-        cout << dp[n][c] << endl;
+        if (dp[n][c] >= 0)
+            cout << dp[n][c] << endl;
+        else
+        {
+            cout << "0" << endl;
+        }
     }
 }
