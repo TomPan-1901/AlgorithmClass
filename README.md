@@ -93,6 +93,10 @@
     这题数据结构课上好像做过但是没讲，见
     <https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/>
 
+* 1040
+
+    正常进行拓扑排序即可
+    
 * 1041
 
     将两个数组归并然后输出中位数即可，**不需要设置输出的小数位数**，不要被样例误导
