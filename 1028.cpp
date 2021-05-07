@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-int solve(int graph[501][501], int n, int s, int t);
+void Dijkstra(int s, int G[501][501], int n, int* d);
 int main()
 {
     int m;
@@ -10,8 +10,10 @@ int main()
     {
         int n, E, s, t;
         cin >> n >> E >> s >> t;
+        int d[501] = {};
         for (int j = 1;j <= n;j++)
         {
+            d[j] = INT16_MAX;
             for (int k = 1;k <= n;k++)
             {
                 if (j == k)
@@ -36,9 +38,44 @@ int main()
                 graph[v][u] = graph[u][v];
             }
         }
-        cout << solve(graph, n, s, t) << endl;
+        Dijkstra(s, graph, n, d);
+        if (d[t] == INT16_MAX)
+        {
+            cout << -1 << endl;
+        }
+        else
+        {
+            cout << d[t] << endl;
+        }
     }
 }
-int solve(int graph[501][501], int n, int s, int t)
+void Dijkstra(int s, int G[501][501], int n, int* d)
 {
+    d[s] = 0;
+    bool vis[501] = {};
+    for (int i = 0;i < n;i++)
+    {
+        int u = -1;
+        int MIN = INT16_MAX;
+        for (int j = 1;j <= n;j++)
+        {
+            if (vis[j] == false && d[j] < MIN)
+            {
+                u = j;
+                MIN = d[j];
+            }
+        }
+        if (u == -1)
+        {
+            return;
+        }
+        vis[u] = true;
+        for (int v = 1;v <= n;v++)
+        {
+            if (vis[v] == false && G[u][v] != INT16_MAX && d[u] + G[u][v] < d[v])
+            {
+                d[v] = d[u] + G[u][v];
+            }
+        }
+    }
 }
