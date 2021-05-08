@@ -1,73 +1,47 @@
 #include <iostream>
 #include <algorithm>
+#include <queue>
 using namespace std;
-struct job
+priority_queue<long long> q;
+typedef struct work
 {
-    int deadline;
-    int weight;
-    job()
-    {}
-    job(int _deadline, int _weight) :
-        deadline(_deadline), weight(_weight)
-    {}
-    int operator<(job right)
-    {
-        return weight > right.weight;
-    }
-};
+    long long time;
+    long long value;
+} work;
+bool cmp(work A, work B)
+{
+    return A.time > B.time;
+}
 
 int main()
 {
-    int T;
-    cin >> T;
-    for (int i = 0;i < T;i++)
+    long long t, i, j, n, m, k, l;
+    cin >> t;
+    for (int p = 0;p < t;p++)
     {
-        int N;
-        cin >> N;
-        job jobs[50001] = {};
-        for (int j = 0;j < N;j++)
+        work jobs[50005];
+        q = priority_queue<long long>();
+        cin >> n;
+        for (i = 1; i <= n; i++)
         {
-            int d, p;
-            cin >> d >> p;
-            jobs[j] = job(d, p);
+            cin >> jobs[i].time >> jobs[i].value;
         }
-        int headptr = 0;
-        while (headptr < N)
+        sort(jobs + 1, jobs + 1 + n, cmp);
+        long long time_index = jobs[1].time;
+        long long result = 0, work_index = 1;
+        while (time_index)
         {
-            int tempptr = headptr;
-            while (jobs[tempptr].deadline == jobs[headptr].deadline && tempptr < N)
+            while (jobs[work_index].time >= time_index && work_index <= n)
+                q.push(jobs[work_index++].value);
+            if (!q.empty())
             {
-                tempptr++;
+                result += q.top();
+                q.pop();
             }
-            sort(jobs + headptr, jobs + tempptr);
-            headptr = tempptr;
+            time_index--;
         }
-        int k = 1;
-        int head = 0;
-        uint64_t result = 0;
-        while (k <= jobs[N - 1].deadline)
-        {
-            if (jobs[head].deadline >= k)
-            {
-                result += jobs[head].weight;
-                head++;
-            }
-            else
-            {
-                int tempptr = head;
-                while (jobs[tempptr].deadline == jobs[head].deadline && tempptr < N)
-                {
-                    tempptr++;
-                }
-                head = tempptr;
-                if (jobs[head].deadline >= k)
-                {
-                    result += jobs[head].weight;
-                    head++;
-                }
-            }
-            k++;
-        }
-        std::cout << result << endl;
+        cout << result << endl;
     }
+
+    return 0;
 }
