@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 void midsearch(int left, int right, int target, int father, int* data);
+// 注意子问题的划分。
 int main()
 {
     int m;

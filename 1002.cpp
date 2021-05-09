@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
+// 两重循环可过
 int main()
 {
     int data[100][1000];

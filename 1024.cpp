@@ -13,6 +13,7 @@ int main()
         double q[550] = {};
         double e[550][550] = {};
         double w[550][550] = {};
+        // 这题的答案和键值无关，所以不需要存键值
         for (int i = 0;i < N;i++)
         {
             int temp;
