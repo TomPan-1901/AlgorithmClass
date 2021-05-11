@@ -1,6 +1,7 @@
 #include <cstdio>
 #include <iostream>
 using namespace std;
+// 这题使用了匈牙利算法，代码比较简洁，和直接使用网络流相比
 bool match(int i, int N, int* p, bool* vis, int Map[51][51])
 {
     for (int j = 1; j <= N; ++j)

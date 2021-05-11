@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 using namespace std;
+// 常规的算法
 int main()
 {
     int T;

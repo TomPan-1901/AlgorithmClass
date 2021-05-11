@@ -1,5 +1,7 @@
 #include <iostream>
 using namespace std;
+// 思路：最后矩阵相乘的结果是可以被分成两个部分，这两部分的结构应该都是最优的
+// 采用动态规划求解
 int main()
 {
     int m;

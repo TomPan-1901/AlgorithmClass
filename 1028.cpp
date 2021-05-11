@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+// 常规的算法
 void Dijkstra(int s, int G[501][501], int n, int* d);
 int main()
 {

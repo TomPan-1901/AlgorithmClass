@@ -1,6 +1,10 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
+// 本题可以用滑动窗口和动态规划两种方法，这里用动态规划实现。
+// 思路：设dp[i]是以temp[i]结尾的，具有最大和的子数组。
+// 如果dp[i-1]大于0，temp[i]+dp[i-1]是增大的，从而dp[i]=dp[i-1]
+// +temp[i]，如果小于等于0，dp[i]=temp[i]
 int solve(int*, int* dp, int n);
 int main()
 {

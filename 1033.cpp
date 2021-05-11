@@ -3,6 +3,8 @@
 #include <queue>
 using namespace std;
 priority_queue<long long> q;
+// 先按收益排序，倒序考虑，每次选出能在ddl前完成的任务，然后挑一个
+// 收益最大的
 typedef struct work
 {
     long long time;

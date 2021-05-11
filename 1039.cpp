@@ -2,6 +2,7 @@
 using namespace std;
 void build(int* data, int* in, int tail);
 void siftdown(int* data, int* in, int head, int tail);
+// 每次找一个入度为0的点输出，然后删除这个点和所有边。
 int main()
 {
     int m;

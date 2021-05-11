@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 using namespace std;
+// 0/1背包问题可以用动态规划在伪多项式时间内解决。
 int main()
 {
     int m;
