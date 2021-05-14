@@ -52,6 +52,9 @@ void solve(int node, vector<vector<int>>& graph,
     }
     else
     {
+        // 实际上每个节点的dp结果应该只包含他们儿子的，但是因为上层没计算的dp全是0，所以这样写
+        // 结果也是正确的
+        // 比较清楚的解法是把44行注释去掉，保证每一层的儿子的vis[]都是0，只加儿子的结果
         // node is black
         int black = 1;
         for (int i = 0;i < graph[node].size();i++)
